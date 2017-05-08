@@ -83,7 +83,9 @@ IF "%PIPELINE_NAME%" == "chef-fips" (
 REM ; ffi-yajl must run in c-extension mode for perf, so force it so we don't accidentally fall back to ffi
 set FORCE_FFI_YAJL=ext
 
+SET BUNDLE_WITHOUT=server:docgen:maintenance:pry:travis:integration:ci
 call bundle env
+call bundle install
 call bundle exec rspec -r rspec_junit_formatter -f RspecJunitFormatter -o %WORKSPACE%\test.xml -f documentation spec/functional
 
 GOTO :EOF
@@ -93,4 +95,4 @@ GOTO :EOF
     SET _dir=%~dp1
     SET _dir=%_dir:~0,-1%
     endlocal & set %2=%_dir%
-GOTO :EOF
+GOTO thout:EOF
