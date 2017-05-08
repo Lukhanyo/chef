@@ -87,7 +87,7 @@ rmdir /s /q .bundle
 
 SET BUNDLE_WITHOUT=server:docgen:maintenance:pry:travis:integration:ci
 call bundle env
-call bundle install
+call bundle update --conservative
 call bundle exec rspec -r rspec_junit_formatter -f RspecJunitFormatter -o %WORKSPACE%\test.xml -f documentation spec/functional
 
 GOTO :EOF
