@@ -83,7 +83,7 @@ IF "%PIPELINE_NAME%" == "chef-fips" (
 REM ; ffi-yajl must run in c-extension mode for perf, so force it so we don't accidentally fall back to ffi
 set FORCE_FFI_YAJL=ext
 
-rmdir /s .bundle
+rmdir /s /q .bundle
 
 SET BUNDLE_WITHOUT=server:docgen:maintenance:pry:travis:integration:ci
 call bundle env
