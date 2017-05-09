@@ -31,7 +31,6 @@ set RUBY_ENGINE=
 set RUBY_ROOT=
 set RUBY_VERSION=
 set BUNDLER_VERSION=
-set
 
 FOR %%b IN (
   chef-client
@@ -83,12 +82,8 @@ IF "%PIPELINE_NAME%" == "chef-fips" (
 REM ; ffi-yajl must run in c-extension mode for perf, so force it so we don't accidentally fall back to ffi
 set FORCE_FFI_YAJL=ext
 
-rmdir /s /q .bundle
-
-SET BUNDLE_WITHOUT=server:docgen:maintenance:pry:travis:integration:ci
-call bundle env
-call bundle update --conservative
-call bundle exec rspec -r rspec_junit_formatter -f RspecJunitFormatter -o %WORKSPACE%\test.xml -f documentation spec/functional
+set
+call %EMBEDDED_BIN_DIR%\rspec -r rspec_junit_formatter -f RspecJunitFormatter -o %WORKSPACE%\test.xml -f documentation spec/functional
 
 GOTO :EOF
 
